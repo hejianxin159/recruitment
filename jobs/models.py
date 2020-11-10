@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 # Create your models here.
 job_types = [
     (0, "技术类"),
@@ -19,6 +20,6 @@ class Job(models.Model):
     job_responsibility = models.TextField(max_length=1024, blank=False, verbose_name="职位职责")
     job_requirement = models.TextField(max_length=1024, blank=False, verbose_name="职位要求")
     creator = models.ForeignKey(User, verbose_name="创建人", null=True, on_delete=models.SET_NULL)
-    created_date = models.DateField(verbose_name="创建时间")
-    modified_date = models.DateField(verbose_name="修改时间")
+    created_date = models.DateField(verbose_name="创建时间", default=datetime.datetime.now)
+    modified_date = models.DateField(verbose_name="修改时间", default=datetime.datetime.now)
 
