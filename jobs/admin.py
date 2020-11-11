@@ -4,6 +4,7 @@ from jobs.models import Job
 # Register your models here.
 
 class JobAdmin(admin.ModelAdmin):
+    #不显示
     exclude = ("creator", "created_date", "modified_date")
     list_display = ("job_name", "job_type", "job_city", "creator", "created_date", "modified_date")
 

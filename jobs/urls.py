@@ -4,5 +4,6 @@ from jobs import views
 
 
 urlpatterns = [
-    url(r"^joblist/", views.job_list, name="joblist")
+    url(r"^joblist/", views.job_list, name="joblist"),
+    url(r"^job/(?P<job_id>\d+)/$", views.job_detail, name="detail")
 ]
