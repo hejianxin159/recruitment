@@ -55,6 +55,34 @@ class CandidateAdmin(admin.ModelAdmin):
     # 排序
     ordering = ("hr_result", "second_result", "first_result")
 
+    # 页面批量修改
+    # list_editable = ("first_interviewer_user", "second_interviewer_user")
+    def get_list_editable(self, request):
+        group_names = self.get_group_names(request.user)
+        if request.user.is_superuser or 'hr' in group_names:
+            return ("first_interviewer_user", "second_interviewer_user")
+        else:
+            return ()
+
+    def get_changelist_instance(self, request):
+        self.list_editable = self.get_list_editable(request)
+        return super(CandidateAdmin, self).get_changelist_instance(request)
+
+    # 设置只读字段
+    # readonly_fields = ("first_interviewer_user", "second_interviewer_user")
+    def get_readonly_fields(self, request, obj=None):
+        group_names = self.get_group_names(request.user)
+        if 'interviewer' in group_names:
+            return ('first_interviewer_user', 'second_interviewer_user')
+        return ()
+
+    def get_group_names(self, user):
+        group_names = []
+        for g in user.groups.all():
+            # 获取用户的组
+            group_names.append(g.name)
+        return group_names
+
     #分组显示
     fieldsets = (
         (None, {"fields": ("userid", ("username", "city", "phone"), "email", "apply_position", "born_address", "gender", "candidate_remark", "bachelor_school", "master_school", "doctor_school", "major", "degree", "test_score_of_general_ability", "paper_score",)}),
