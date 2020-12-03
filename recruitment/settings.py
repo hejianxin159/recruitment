@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jobs',
-    "interview"
+    "interview",
 ]
 
 MIDDLEWARE = [
@@ -173,3 +174,4 @@ LOGGING = {
     },
 }
 
+DINGTALK_WEB_HOOK = 'https://oapi.dingtalk.com/robot/send?access_token=557961687972a9cce1422c2fa7ce0cb3f85213ed586a992e46cb27bec8301df1'
