@@ -14,6 +14,7 @@ exportable_fields = ("username", "city", "bachelor_school",
                     "last_editor"
                 )
 
+
 def export_model_as_csv(model_admin, request, queryset):
     response = HttpResponse(content="text/csv")
     fields_list = exportable_fields
@@ -33,6 +34,7 @@ def export_model_as_csv(model_admin, request, queryset):
 
 
 export_model_as_csv.short_description = "导出csv"
+
 
 # Register your models here.
 class CandidateAdmin(admin.ModelAdmin):
@@ -83,7 +85,7 @@ class CandidateAdmin(admin.ModelAdmin):
             group_names.append(g.name)
         return group_names
 
-    #分组显示
+    # 分组显示
     fieldsets = (
         (None, {"fields": ("userid", ("username", "city", "phone"), "email", "apply_position", "born_address", "gender", "candidate_remark", "bachelor_school", "master_school", "doctor_school", "major", "degree", "test_score_of_general_ability", "paper_score",)}),
         ("第一面", {"fields": ("first_score", "first_learning_ability", "first_professional_competency", "first_advantage", "first_disadvantage", "first_result", "first_recommend_position", "first_interviewer_user", "first_remark",)}),
@@ -92,4 +94,6 @@ class CandidateAdmin(admin.ModelAdmin):
     )
 
     actions = [export_model_as_csv]
+
+
 admin.site.register(Candidate, CandidateAdmin)
