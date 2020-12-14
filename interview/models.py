@@ -92,7 +92,7 @@ class Candidate(models.Model):
     hr_remark = models.CharField(max_length=256, blank=True, verbose_name=u'HR复试备注')
 
     creator = models.CharField(max_length=256, blank=True, verbose_name=u'候选人数据的创建人')
-    created_date = models.DateTimeField(auto_now_add=True, verbose_name=u'创建时间')
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name=u'创建时间', null=True)
     modified_date = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name=u'更新时间')
     last_editor = models.CharField(max_length=256, blank=True, verbose_name=u'最后编辑者')
 

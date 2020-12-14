@@ -88,6 +88,7 @@ class CandidateAdmin(admin.ModelAdmin):
             return ()
 
     def get_changelist_instance(self, request):
+        # 设置哪些字端可以修改
         self.list_editable = self.get_list_editable(request)
         return super(CandidateAdmin, self).get_changelist_instance(request)
 

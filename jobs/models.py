@@ -17,7 +17,8 @@ JobTypes = [
 Cities = [
     (0, "北京"),
     (1, "上海"),
-    (2, "深圳")
+    (2, "深圳"),
+    (3, "成都")
 ]
 class Job(models.Model):
     job_type = models.SmallIntegerField(blank=False, choices=JobTypes, verbose_name="职位类别")
@@ -26,8 +27,8 @@ class Job(models.Model):
     job_responsibility = models.TextField(max_length=1024, blank=False, verbose_name="职位职责")
     job_requirement = models.TextField(max_length=1024, blank=False, verbose_name="职位要求")
     creator = models.ForeignKey(User, verbose_name="创建人", null=True, on_delete=models.SET_NULL)
-    created_date = models.DateField(verbose_name="创建时间", default=datetime.datetime.now)
-    modified_date = models.DateField(verbose_name="修改时间", default=datetime.datetime.now)
+    created_date = models.DateField(verbose_name="创建时间", default=datetime.datetime.now, null=True)
+    modified_date = models.DateField(verbose_name="修改时间", default=datetime.datetime.now, null=True)
 
 
     class Meta:
